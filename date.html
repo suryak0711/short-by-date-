@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <style>
+        h2{
+            font-size:30px ;
+        }
+        p{
+            color: rgb(112, 208, 248);
+            margin-bottom: 30px;
+            font-size: 15px;
+           
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card {
+            width: 250px;
+            border: 3px solid #fca400;
+            border-radius: 8px;
+            margin: 10px;
+            padding: 10px;
+            margin-left: 25px;
+        }
+       /* Basic button styling */
+button {
+  background-color: #ff3bbe; /* Green background */
+  border: none; /* No border */
+  color: white; /* White text */
+  padding: 15px 32px; /* Padding */
+  text-align: center; /* Centered text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Inline-block display */
+  font-size: 16px; /* Font size */
+  margin: 4px 2px; /* Margin */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Button active effect */
+button:active {
+  background-color: #33b8ec; /* Even darker green when clicked */
+  box-shadow: 0 5px #f30000; /* Shadow effect */
+  transform: translateY(4px); /* Slight move down on click */
+  transition: background-color 0.5s ease; 
+}
+
+/* Button focus effect */
+button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 5px #75ccee; /* Green shadow on focus */
+}
+
+/* Disabled button styling */
+button:disabled {
+  background-color: #ccc; /* Light grey background */
+  color: #666; /* Dark grey text */
+  cursor: not-allowed; /* Not-allowed cursor */
+  box-shadow: none; /* No shadow */
+  transform: none; /* No transform */
+}
+
+    </style>
+</head>
+<body>
+    
+
+<h2>Filter buttons</h2>
+<button onclick="selectAllProducts()">Show all products</button>
+<button onclick="filterByPrice(0, 100)">Below $100</button>
+<button onclick="filterByPrice(0, 500)">Below $500</button>
+<button onclick="filterByPrice(0, 1000)">Below $1000</button>
+<button onclick="sortByDate()">Sort by Date (Oldest to Newest)</button><br><br>
+
+<div class="container" >
+    <div class="card" data-price="99" data-date="2024-05-22T15:30:00">
+        <img src="1.jpeg" alt="phone1" width="200px">
+       <center> <p>Product 1</p>
+        <p>$99 <br>Date: May 22, 2024 Time: 03:30 PM</p></center>
+    </div>
+    <div class="card" data-price="200" data-date="2024-05-21T15:30:00">
+        <img src="2.jpeg" alt="phone2" width="200px">
+       <center> <p>Product 2</p>
+        <p>$200 <br>Date: May 21, 2024 Time: 03:30 PM</p></center>
+    </div>
+    <div class="card" data-price="500" data-date="2024-04-20T15:30:00">
+        <img src="3.jpeg" alt="phone3" width="200px">
+       <center> <p>Product 3</p>
+        <p>$500 <br>Date: Apr 20, 2024 Time: 03:30 PM</p></center>
+    </div>
+    <div class="card" data-price="199" data-date="2024-05-19T15:30:00">
+        <img src="4.jpeg" alt="phone1" width="200px">
+       <center> <p>Product 4</p>
+        <p>$199 <br>Date: May 19, 2024 Time: 03:30 PM</p></center>
+    </div>
+    <div class="card" data-price="200" data-date="2024-05-25T15:30:00">
+        <img src="5.jpeg" alt="phone2" width="200px">
+       <center> <p>Product 5</p>
+        <p>$299<br>Date: May 25, 2024 Time: 03:30 PM</p></center>
+    </div>
+    <div class="card" data-price="110" data-date="2024-04-25T15:30:00">
+        <img src="6.jpeg" alt="phone3" width="200px">
+       <center> <p>Product 6</p>
+        <p>$110 <br>Date: Apr 25, 2024 Time: 03:30 PM</p></center>
+    </div>
+    <div class="card" data-price="359" data-date="2024-10-29T17:30:00">
+        <img src="7.jpeg" alt="phone3" width="190px">
+       <center> <p>Product 7</p>
+        <p>$359 <br>Date: Oct 29, 2024 Time: 05:30 PM</p></center>
+    </div>
+    <div class="card" data-price="1001" data-date="2024-05-25T13:30:00">
+        <img src="8.jpeg" alt="phone2" width="200px">
+       <center> <p>Product 8</p>
+        <p>$1001<br>Date: May 25, 2024 Time: 01:30 PM</p></center>
+    </div>
+    <div class="card" data-price="670" data-date="2024-04-25T15:30:00">
+        <img src="9.jpeg" alt="phone3" width="200px">
+       <center> <p>Product 9</p>
+        <p>$670 <br>Date: Apr 25, 2024 Time: 03:30 PM</p></center>
+    </div>
+    <div class="card" data-price="890" data-date="2024-07-25T18:30:00">
+        <img src="10.jpeg" alt="phone3" width="200px">
+       <center> <p>Product 10</p>
+        <p>$890 <br>Date: July 25, 2024 Time: 06:30 PM</p></center>
+    </div>
+    <div class="card" data-price="670" data-date="2024-01-25T11:30:00">
+        <img src="7.jpeg" alt="phone3" width="200px">
+       <center> <p>Product 11</p>
+        <p>$670 <br>Date: Jan 25, 2024 Time: 11:30 AM</p></center>
+    </div>
+    <div class="card" data-price="90" data-date="2024-03-20T18:30:00">
+        <img src="3.jpeg" alt="phone3" width="200px">
+       <center> <p>Product 12</p>
+        <p>$90 <br>Date: Mar 20, 2024 Time: 06:30 PM</p></center>
+    </div>
+    <!-- Add more cards as needed -->
+</div>
+
+<script>
+    function selectAllProducts() {
+        // Show all products by removing any filtering
+        let cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.style.display = 'block';
+        });
+        sortByDate() 
+    }
+
+    function filterByPrice(minPrice, maxPrice) {
+        let cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            let price = parseFloat(card.dataset.price);
+            if (price >= minPrice && price < maxPrice) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+    }
+
+    function sortByDate() {
+        let container = document.querySelector('.container');
+        let cards = Array.from(document.querySelectorAll('.card'));
+
+        cards.sort((a, b) => {
+            let dateA = new Date(a.dataset.date);
+            let dateB = new Date(b.dataset.date);
+            return dateA - dateB;
+        });
+
+        // Remove all existing cards
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+
+        // Append sorted cards
+        cards.forEach(card => {
+            container.appendChild(card);
+        });
+        selectAllProducts()
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
